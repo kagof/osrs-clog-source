@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Scraper (mock, pretty)" type="GoApplicationRunConfiguration" factoryName="Go Application">
+    <module name="scraper" />
+    <working_directory value="$PROJECT_DIR$" />
+    <parameters value="--mock --pretty -o=$PROJECT_DIR$/results.json" />
+    <kind value="PACKAGE" />
+    <package value="scraper" />
+    <directory value="$PROJECT_DIR$" />
+    <auto_managed_config_id value="$PROJECT_DIR$" />
+    <method v="2" />
+  </configuration>
+</component>

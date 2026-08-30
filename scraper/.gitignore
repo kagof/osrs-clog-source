@@ -1,0 +1,7 @@
+.idea/*
+
+# keep the run configurations, though
+!.idea/runConfigurations
+!.idea/runConfigurations/*
+
+results.json

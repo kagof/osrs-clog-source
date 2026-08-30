@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OSRS-Collection-Log-Source",
+  "description": "Sources of Collection Log items in OSRS",
+  "type": "object",
+  "properties": {
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The time that this result set was generated at"
+    },
+    "sources": {
+      "type": "object",
+      "description": "The sources of Collection Log Items",
+      "additionalProperties": {
+        "type": "object",
+        "description": "A specific source of a Collection Log item",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the source"
+          },
+          "subclassifications": {
+            "type": "object",
+            "description": "The subclassifications of this source (empty string for base variant)",
+            "additionalProperties": {
+              "type": "object",
+              "description": "A subclassification of a source",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "The name of the subclassification (empty if no subclassification)"
+                },
+                "link": {
+                  "type": "string",
+                  "format": "url",
+                  "description": "Link to the source's OSRS Wiki page"
+                },
+                "items": {
+                  "type": "array",
+                  "description": "The Collection Log items from this source",
+                  "items": {
+                    "type": "object",
+                    "description": "A Collection Log item with info from its source",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "The name of the item"
+                      },
+                      "image": {
+                        "type": "string",
+                        "format": "url",
+                        "description": "The link to the OSRS Wiki's icon for the item"
+                      },
+                      "link": {
+                        "type": "string",
+                        "format": "url",
+                        "description": "The link to the OSRS Wiki's article for the item"
+                      },
+                      "compPercent": {
+                        "type": "string",
+                        "description": "The percentage of players that have obtained the item"
+                      },
+                      "quantity": {
+                        "type": "string",
+                        "description": "The quantity of the item dropped from this source"
+                      },
+                      "rarity": {
+                        "type": "string",
+                        "description": "The rarity of the item from this source"
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
