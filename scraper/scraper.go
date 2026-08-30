@@ -19,6 +19,7 @@ func main() {
 		useMock         = false
 		pretty          = false
 		tee             = false
+		noLog           = false
 		outFile         = ""
 		truncateItemsTo = -1
 	)
@@ -29,6 +30,9 @@ func main() {
 	if slices.Contains(os.Args, "--pretty") {
 		pretty = true
 		log.Println("Pretty-printing")
+	}
+	if slices.Contains(os.Args, "--no-log") {
+		noLog = true
 	}
 	outputIndex := slices.IndexFunc(os.Args, func(s string) bool {
 		return strings.HasPrefix(s, "-o=")
@@ -53,12 +57,30 @@ func main() {
 			panic(err)
 		}
 		truncateItemsTo = tInt
-		log.Printf("Truncating items to %d\n", truncateItemsTo)
 	}
-	Execute(useMock, pretty, tee, outFile, truncateItemsTo)
+	Execute(useMock, pretty, noLog, outFile, tee, truncateItemsTo)
 }
 
-func Execute(useMock, pretty, tee bool, outFile string, truncateItemsTo int) {
+func Execute(useMock, pretty, noLog bool, outFile string, tee bool, truncateItemsTo int) {
+	if noLog {
+		log.Disable()
+	}
+	if useMock {
+		log.Println("Using mock fetcher")
+	}
+	if pretty {
+		log.Println("Pretty printing")
+	}
+	if outFile != "" {
+		log.Printf("Using output file %s\n", outFile)
+		if tee {
+			log.Println("Also writing output to stdout")
+		}
+	}
+	if truncateItemsTo >= 0 {
+		log.Printf("Truncating items to %d\n", truncateItemsTo)
+	}
+
 	startTime := time.Now()
 	f := fetcher.New(useMock, time.Second)
 

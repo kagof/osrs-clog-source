@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"os"
+	"scraper/log"
 	"testing"
 
 	"github.com/google/jsonschema-go/jsonschema"
@@ -27,7 +28,8 @@ func TestResultsConformToSchema(t *testing.T) {
 	file, err := os.ReadFile("./results.json")
 	if err != nil {
 		t.Log("failed to read results.json file, regenerating")
-		Execute(true, true, false, "./results.json", -1)
+		log.Writer = t.Output()
+		Execute(true, true, false, "./results.json", false, -1)
 		file, err = os.ReadFile("./results.json")
 		if err != nil {
 			t.Fatalf("failed to read results.json even after re-generating: %s", err)

@@ -14,6 +14,7 @@ I claim no ownership of the data that this tool scrapes.
 |-----------------|----------------------------------------------|
 | `--mock`        | use the stored mock data                     |
 | `--pretty`      | pretty print the result                      |
+| `--no-log`      | do not write loglines to stderr              |
 | `-o={filename}` | output the results to `{filename}`           |
 | `--tee`         | if `-o` has been used, also output to stdout |
 | `-t={num}`      | truncate the result set to `{num}`           |
