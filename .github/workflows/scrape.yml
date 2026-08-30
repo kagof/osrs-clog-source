@@ -18,15 +18,16 @@ jobs:
         run: |
           cd scraper
           go run . -- --debug -t=5 > results.json
+          cd ..
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v6.1.0
         with:
           role-to-assume: ${{ secrets.ROLE_ARN }}
-          aws-region: us-east-1
+          aws-region: eu-west-2
           role-duration-seconds: 900
           mask-aws-account-id: true
 
       - name: Copy scrape results to S3 bucket
         run: |
-          aws s3 cp ./results.json s3://${{ secrets.S3_BUCKET_NAME }}/data/sources.json
+          aws s3 cp ./scraper/results.json s3://${{ secrets.S3_BUCKET_NAME }}/data/sources.json
