@@ -11,7 +11,7 @@ import (
 
 const (
 	BaseUrl   = "https://oldschool.runescape.wiki"
-	userAgent = "kagof-clog-scraper/0.0 (osrs-collection-log-source.kagof.com scraper)"
+	userAgent = "kagof-clog-scraper/0.0 (osrs-clog-source.kagof.com scraper; https://github.com/kagof/osrs-clog-source)"
 )
 
 func New(useMock bool, delay time.Duration) Fetcher {

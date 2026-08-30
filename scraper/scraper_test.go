@@ -29,7 +29,7 @@ func TestResultsConformToSchema(t *testing.T) {
 	if err != nil {
 		t.Log("failed to read results.json file, regenerating")
 		log.Writer = t.Output()
-		Execute(true, true, false, "./results.json", false, -1)
+		Execute(true, true, "./results.json", false, -1)
 		file, err = os.ReadFile("./results.json")
 		if err != nil {
 			t.Fatalf("failed to read results.json even after re-generating: %s", err)

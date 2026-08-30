@@ -2,7 +2,7 @@
   <configuration default="false" name="Scraper only 5" type="GoApplicationRunConfiguration" factoryName="Go Application">
     <module name="scraper" />
     <working_directory value="$PROJECT_DIR$" />
-    <parameters value="--pretty --tee -t=5 -o=$PROJECT_DIR$/results.json" />
+    <parameters value="--debug --pretty --tee -t=5 -o=$PROJECT_DIR$/results.json" />
     <kind value="PACKAGE" />
     <package value="scraper" />
     <directory value="$PROJECT_DIR$" />
