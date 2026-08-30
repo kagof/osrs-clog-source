@@ -27,4 +27,4 @@ jobs:
 
       - name: Copy scrape results to S3 bucket
         run: |
-          aws s3 cp ./results.json ${{ secrets.S3_BUCKET_NAME }}/data/sources.json
+          aws s3 cp ./results.json s3://${{ secrets.S3_BUCKET_NAME }}/data/sources.json
