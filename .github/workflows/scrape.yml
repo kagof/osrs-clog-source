@@ -17,7 +17,7 @@ jobs:
       - name: Scrape
         run: |
           cd scraper
-          go run . -- --debug > results.json
+          go run . -- --debug -t=5 > results.json
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v6.1.0
