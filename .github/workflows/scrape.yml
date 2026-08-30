@@ -1,0 +1,30 @@
+name: Scrape
+
+on: workflow_dispatch
+
+permissions:
+  id-token: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Set up Go
+        uses: actions/setup-go@v7
+        with:
+          go-version: '1.27'
+      - name: Scrape
+        run: |
+          cd scraper
+          go run . -- > results.json
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v6.1.0
+        with:
+          role-to-assume: ${{ secrets.ROLE_ARN }}
+          aws-region: us-east-1
+
+      - name: Copy scrape results to S3 bucket
+        run: |
+          aws s3 cp ./results.json ${{ secrets.S3_BUCKET_NAME }}/data/sources.json
