@@ -14,14 +14,15 @@ jobs:
         uses: actions/setup-go@v7
         with:
           go-version: '1.27'
+          go-version-file: 'scraper/go.mod'
       - name: Scrape
         run: |
           cd scraper
-          go run . -- --debug -t=5 > results.json
+          go run . -- --debug > results.json
           cd ..
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v6.1.0
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: ${{ secrets.ROLE_ARN }}
           aws-region: eu-west-2
