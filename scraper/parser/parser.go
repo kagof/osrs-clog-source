@@ -58,8 +58,19 @@ func ParseItemSources(item *Item, data string) ([]*ItemSource, error) {
 	if err != nil {
 		return nil, err
 	}
-	var tbodyNode *html.Node = nil
+	var tableNode *html.Node = nil
 	for node := range parse.Descendants() {
+		if strings.Contains(node.Data, "table") && strings.Contains(getAttr(node, "class"), "item-drops") {
+			tableNode = node
+			break
+		}
+	}
+	if tableNode == nil {
+		return nil, errors.New("could not find table tag with item-drops class")
+	}
+
+	var tbodyNode *html.Node = nil
+	for node := range tableNode.Descendants() {
 		if strings.Contains(node.Data, "tbody") {
 			tbodyNode = node
 			break

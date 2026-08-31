@@ -26,7 +26,7 @@ func (c *Cache[K, V]) Memoized(f func(k K) (V, error)) func(k K) (V, error) {
 	return func(k K) (V, error) {
 		cached, ok := c.Get(k)
 		if ok {
-			log.Debugf("found cached value for key %v", k)
+			log.Debugf("found cached value for key %v\n", k)
 			return cached, nil
 		}
 		v, err := f(k)
