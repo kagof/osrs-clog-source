@@ -32,3 +32,12 @@ jobs:
       - name: Copy scrape results to S3 bucket
         run: |
           aws s3 cp ./scraper/results.json s3://${{ secrets.S3_BUCKET_NAME }}/data/sources.json
+
+      - name: Compute hash
+        run: |
+          sha256sum ./scraper/results.json | awk '{printf "%s", $1}' > ./scraper/results.json.hash
+
+
+      - name: Copy hash to S3 bucket
+        run: |
+          aws s3 cp ./scraper/results.json.hash s3://${{ secrets.S3_BUCKET_NAME }}/data/sources.json.hash
