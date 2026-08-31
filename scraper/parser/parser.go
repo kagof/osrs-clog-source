@@ -85,8 +85,8 @@ func ParseItemSources(item *Item, data string) ([]*ItemSource, error) {
 										FirstChild.
 										Data,
 					" "),
-				Link: strings.TrimPrefix(getAttr(nameLinkTd.FirstChild, // a
-					"href"), "/w/"),
+				Link: getAttr(nameLinkTd.FirstChild, // a
+					"href"),
 				Subclassification: getSubclassification(nameLinkTd),
 			},
 			Quantity: quantityTd.FirstChild.Data,
@@ -138,11 +138,11 @@ func ParseCollectionLogTable(data string) ([]*Item, error) {
 				FirstChild. // a (image link)
 				FirstChild, // img
 				"src"),
-			Link: strings.TrimPrefix(getAttr(imgNameTd.
+			Link: getAttr(imgNameTd.
 				FirstChild.  // span (image)
 				NextSibling. // " " (space)
 				NextSibling, // a (article link)
-				"href"), "/w/"),
+				"href"),
 			CompPercent: percentTd.FirstChild.Data,
 		}
 		items = append(items, item)

@@ -52,25 +52,20 @@ func (s *CollectionLogItemSources) Add(is *parser.ItemSource) {
 	if !ok {
 		subclassification = &CollectionLogItemSubclassification{
 			Name:  is.Source.Subclassification,
-			Link:  buildPageLink(is.Source.Link),
+			Link:  buildLink(is.Source.Link),
 			Items: make([]*CollectionLogItem, 0),
 		}
 		source.Subclassifications[is.Source.Subclassification] = subclassification
 	}
 	subclassification.Items = append(subclassification.Items, &CollectionLogItem{
 		Name:        is.Item.Name,
-		Image:       buildImageLink(is.Item.Image),
-		Link:        buildPageLink(is.Item.Link),
+		Image:       buildLink(is.Item.Image),
+		Link:        buildLink(is.Item.Link),
 		CompPercent: is.Item.CompPercent,
 		Quantity:    is.Quantity,
 		Rarity:      is.Rarity,
 	})
 }
-
-func buildPageLink(link string) string {
-	return fmt.Sprintf("%s/w/%s", fetcher.BaseUrl, link)
-}
-
-func buildImageLink(link string) string {
+func buildLink(link string) string {
 	return fmt.Sprintf("%s%s", fetcher.BaseUrl, link)
 }

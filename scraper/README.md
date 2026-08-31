@@ -49,12 +49,21 @@ All of them output the results to the (git-ignored) file `results.json`.
 
 ## Testing
 
-Currently, the only test validates that the output matches the schema.
-
 ```sh
 go test ./...
+```
+
+To include tests that actually call the OSRS Wiki API:
+```sh
+INTEGRATION=1 go test ./...
 ```
 
 ## Output format
 
 The output format follows [this JSON Schema](./schema.json).
+
+## TODO
+
+- Deal with items that have "Shop locations" instead of "Item sources", eg [Void Knight Top](https://oldschool.runescape.wiki/w/Void_knight_top). The initial intent for this tool is to be used for slayer monsters though, so not hugely urgent. For now these all appear in the "None" section.
+- Take advantage of Go Iterators, which should be able to reduce the memory usage of this (ie, not needing to hold the entire `items` list in memory at once)
+- Deal with errors & unexpected data shapes more gracefully

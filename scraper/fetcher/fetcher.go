@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"scraper/cache"
 	"scraper/log"
 	"strings"
 	"time"
@@ -19,11 +20,7 @@ func New(useMock bool, delay time.Duration) Fetcher {
 	if useMock {
 		return &mockFetcher{}
 	}
-	return &fetcher{
-		client: &http.Client{
-			Transport: newRoundTripper(userAgent, delay),
-		},
-	}
+	return getFetcher(delay, 15)
 }
 
 type Fetcher interface {
@@ -32,6 +29,16 @@ type Fetcher interface {
 
 type fetcher struct {
 	client *http.Client
+	cache  *cache.Cache[string, string]
+}
+
+func getFetcher(delay time.Duration, cacheCap int) *fetcher {
+	return &fetcher{
+		client: &http.Client{
+			Transport: newRoundTripper(userAgent, delay),
+		},
+		cache: cache.NewCache[string, string](cacheCap),
+	}
 }
 
 type roundTripper struct {
@@ -90,6 +97,15 @@ type section struct {
 }
 
 func (f *fetcher) FetchPageSection(pageName string, sectionName string) (string, error) {
+	pageName = strings.SplitN(strings.TrimPrefix(pageName, "/w/"), "#", 2)[0]
+	key := fmt.Sprintf("%s#%s", pageName, sectionName)
+	return f.cache.Memoized(f.fetchPageSectionInternal)(key)
+}
+
+func (f *fetcher) fetchPageSectionInternal(key string) (string, error) {
+	spl := strings.SplitN(key, "#", 2)
+	pageName := spl[0]
+	sectionName := spl[1]
 	sections, err := f.fetchSections(pageName)
 	if err != nil {
 		return "", err
