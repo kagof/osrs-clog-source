@@ -36,3 +36,7 @@ func Debugln(msg string) {
 		_, _ = fmt.Fprintln(Writer, "DBG: "+msg)
 	}
 }
+
+func Errorf(format string, a ...any) {
+	_, _ = fmt.Fprintf(Writer, "ERR: "+format, a...)
+}

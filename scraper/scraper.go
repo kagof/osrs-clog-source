@@ -120,12 +120,14 @@ func Execute(useMock, pretty bool, outFile string, tee bool, truncateItemsTo int
 				resultSet.Add(parser.ItemSourceNone(item))
 				continue
 			} else {
-				panic(err2)
+				log.Errorf("Unexpected error fetching %s item sources %s", item.Name, err2)
+				continue
 			}
 		}
 		sources, err2 := parser.ParseItemSources(item, sec)
 		if err2 != nil {
-			panic(err2)
+			log.Errorf("Unexpected error parsing %s item sources %s", item.Name, err2)
+			continue
 		}
 		log.Debugf("Found %d %s item sources: %s\n", len(sources), item.Name, sources)
 		for _, source := range sources {
@@ -149,7 +151,7 @@ func Execute(useMock, pretty bool, outFile string, tee bool, truncateItemsTo int
 	if outFile != "" {
 		err2 := os.WriteFile(outFile, bytes, 0644)
 		if err2 != nil {
-			panic(err2)
+			log.Errorf("Unexpected error writing output to file %s\n", outFile)
 		}
 		if tee {
 			fmt.Print(string(bytes))
