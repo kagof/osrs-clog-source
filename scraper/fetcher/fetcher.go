@@ -6,6 +6,7 @@ import (
 	"io"
 	"net/http"
 	"scraper/log"
+	"strings"
 	"time"
 )
 
@@ -95,13 +96,13 @@ func (f *fetcher) FetchPageSection(pageName string, sectionName string) (string,
 	}
 	secIdx := ""
 	for _, sec := range sections {
-		if sec.Title == sectionName {
+		if strings.EqualFold(sec.Title, sectionName) {
 			secIdx = sec.Index
 			break
 		}
 	}
 	if secIdx == "" {
-		return "", fmt.Errorf("section %s not found", sectionName)
+		return "", fmt.Errorf("%s section not found", sectionName)
 	}
 	resp, err := f.client.Get(fmt.Sprintf("%s/api.php?action=parse&page=%s&section=%s&format=json",
 		BaseUrl,

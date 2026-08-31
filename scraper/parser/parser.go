@@ -151,6 +151,19 @@ func ParseCollectionLogTable(data string) ([]*Item, error) {
 	return items, nil
 }
 
+func ItemSourceNone(item *Item) *ItemSource {
+	return &ItemSource{
+		Item: item,
+		Source: &Source{
+			Name:              "None",
+			Link:              "",
+			Subclassification: "",
+		},
+		Quantity: "N/A",
+		Rarity:   "N/A",
+	}
+}
+
 func getAttr(n *html.Node, key string) string {
 	if n == nil {
 		return ""

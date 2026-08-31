@@ -115,7 +115,13 @@ func Execute(useMock, pretty bool, outFile string, tee bool, truncateItemsTo int
 		log.Debugf("Fetching %s item sources\n", item.Name)
 		sec, err2 := f.FetchPageSection(item.Link, "Item sources")
 		if err2 != nil {
-			panic(err2)
+			if strings.HasSuffix(err2.Error(), "section not found") {
+				log.Debugf("Found no %s item sources\n", item.Name)
+				resultSet.Add(parser.ItemSourceNone(item))
+				continue
+			} else {
+				panic(err2)
+			}
 		}
 		sources, err2 := parser.ParseItemSources(item, sec)
 		if err2 != nil {

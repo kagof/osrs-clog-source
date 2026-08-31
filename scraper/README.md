@@ -4,6 +4,8 @@ This is a tool written in Go that (responsibly) scrapes the [OSRS wiki](https://
 
 The intention is for this to run once a week, to update the data for the website with each OSRS update. Effort has been taken to try to be a good citizen; a descriptive user agent is set, and there is a 1 second delay between each request to the Wiki.
 
+Note it is pretty brittle; I've not really put any effort into safe error handling so it is pretty prone to panicking if, for example, the Wiki slightly changes its formatting.
+
 This tool is not associated with or endorsed by the OSRS Wiki, Jagex, or Old School RuneScape.
 
 I claim no ownership of the data that this tool scrapes.
