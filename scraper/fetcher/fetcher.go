@@ -120,7 +120,7 @@ func (f *fetcher) fetchPageSectionInternal(key string) (string, error) {
 	if secIdx == "" {
 		return "", fmt.Errorf("%s section not found", sectionName)
 	}
-	resp, err := f.client.Get(fmt.Sprintf("%s/api.php?action=parse&page=%s&section=%s&format=json",
+	resp, err := f.client.Get(fmt.Sprintf("%s/api.php?action=parse&page=%s&section=%s&format=json&redirects=true",
 		BaseUrl,
 		pageName,
 		secIdx))
@@ -142,7 +142,7 @@ func (f *fetcher) fetchPageSectionInternal(key string) (string, error) {
 }
 
 func (f *fetcher) fetchSections(pageName string) ([]section, error) {
-	resp, err := f.client.Get(fmt.Sprintf("%s/api.php?action=parse&page=%s&props=sections&format=json",
+	resp, err := f.client.Get(fmt.Sprintf("%s/api.php?action=parse&page=%s&props=sections&format=json&redirects=true",
 		BaseUrl,
 		pageName))
 	if err != nil {
