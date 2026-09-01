@@ -26,9 +26,7 @@ searchElement.onkeydown = (event) => {
     }
     console.log(`searching for ${value}`)
     let results = Object.keys(sources.sources)
-        .filter((name) => name.toLowerCase()
-            .split(' ')
-            .some((word) => word.startsWith(value.toLowerCase())))
+        .filter((name) => name.toLowerCase().includes(value.toLowerCase()))
     console.log(`${results.length} results found`)
     setDropdownItems(results)
 }
@@ -197,7 +195,7 @@ function insertItemHeadersRow() {
     let th2 = document.createElement('th')
     th2.textContent = 'Quantity'
     let th3 = document.createElement('th')
-    th3.textContent = 'Percent obtained'
+    th3.textContent = 'Players obtained'
     row.appendChild(th0)
     row.appendChild(th1)
     row.appendChild(th2)
@@ -237,6 +235,8 @@ function dropdownItemEntryOnclick(event) {
     setChoice(key)
 }
 
+let subclassificationPriority = ["", "standard"]
+
 function setChoice(key) {
     console.log(`${key} selected`)
     let source = sources.sources[key]
@@ -249,11 +249,29 @@ function setChoice(key) {
     clearChoice()
     insertSourceRow(key)
     Object.values(source.subclassifications)
-    // TODO: sort
+    .sort((a, b) => {
+        let aNameLower = a.name.toLowerCase()
+        let bNameLower = b.name.toLowerCase()
+        const aPrio = subclassificationPriority.indexOf(aNameLower)
+        const bPrio = subclassificationPriority.indexOf(bNameLower)
+        if (aPrio >= 0 && bPrio >= 0) {
+            return aPrio - bPrio
+        }
+        if (aPrio >= 0) {
+            return -1
+        }
+        if (bPrio >= 0) {
+            return 1
+        }
+
+        return aNameLower.toLowerCase().localeCompare(bNameLower.toLowerCase())
+    })
     .forEach(subclassification => {
         insertSubclassificationRow(subclassification)
         insertItemHeadersRow()
-        subclassification.items.forEach(insertItemRow) // TODO: sort
+        subclassification.items
+        .sort((a, b) => a.compPercent < b.compPercent ? 1 : (a.compPercent > b.compPercent ? -1 : 0))
+        .forEach(insertItemRow)
     })
     searchResults.hidden = false
     sessionStorage.setItem('choice', key)

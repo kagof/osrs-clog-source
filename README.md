@@ -18,6 +18,12 @@ Because just about everything is done locally and there are no dependencies to l
 
 The load from the webpage to the Wiki is limited to just the image icons.
 
+### website TODOs
+
+* arrow keys / enter to navigate the dropdown
+* allow user to sort by different columns
+* minify CSS/JS? Probably not worth the hassle currently given there is a tiny amount in total
+
 ## Workflow
 
 The scraper runs in a Github Actions workflow (currently kicked off manually, intended to run once a week after game updates automatically). This collects the relevent details into the relevant format, and uploads them as JSON to the S3 bucket that the website is served from, as well as a file containing the hash of the JSON file.
