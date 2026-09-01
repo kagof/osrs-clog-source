@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>OSRS Collection Log Source</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" crossorigin href="assets/index.css"/>
+        <script type="module" crossorigin src="assets/index.js" ></script>
+    </head>
+    <body>
+        <h1 class="header">OSRS Collection Log Source</h1>
+        <main class="page">
+            <div>
+                <p>Search for an Old School RuneScape activity (boss, monster, minigame, etc) and this returns the collection log items associated with that activity.</p>
+                <p>Backed by data from the <a href="https://oldschool.runescape.wiki">OSRS Wiki</a> (though not associated with or endorsed by the OSRS Wiki, Jagex, or Old School RuneScape).</p>
+            </div>
+            <div id="last-updated">Data last updated on unknown</div>
+            <div class="search-container">
+                <div class="searchbar-wrapper">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="searchbar-icon" height="24px">
+                        <!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc. -->
+                        <path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376C296.3 401.1 253.9 416 208 416 93.1 416 0 322.9 0 208S93.1 0 208 0 416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+                    </svg>
+                    <input id="searchbar-input" placeholder="type to search..."/>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu" hidden>
+                    <div class="dropdown-item" id="dropdown-item-0" hidden>
+                        <div class="dropdown-item-entry" id="dropdown-item-entry-0"></div>
+                    </div>
+                    <div class="dropdown-item" id="dropdown-item-1" hidden>
+                        <div class="dropdown-item-separator" id="dropdown-item-separator-1"></div>
+                        <div class="dropdown-item-entry" id="dropdown-item-entry-1"></div>
+                    </div>
+                    <div class="dropdown-item" id="dropdown-item-2" hidden>
+                        <div class="dropdown-item-separator" id="dropdown-item-separator-2"></div>
+                        <div class="dropdown-item-entry" id="dropdown-item-entry-2"></div>
+                    </div>
+                    <div class="dropdown-item" id="dropdown-item-3" hidden>
+                        <div class="dropdown-item-separator" id="dropdown-item-separator-3"></div>
+                        <div class="dropdown-item-entry" id="dropdown-item-entry-3"></div>
+                    </div>
+                    <div class="dropdown-item" id="dropdown-item-4" hidden>
+                        <div class="dropdown-item-separator" id="dropdown-item-separator-4"></div>
+                        <div class="dropdown-item-entry" id="dropdown-item-entry-4"></div>
+                    </div>
+                    <div class="dropdown-item" id="dropdown-item-more" hidden>
+                        <div class="dropdown-item-separator" id="dropdown-item-separator-more"></div>
+                        <div class="dropdown-item-entry-more" id="dropdown-item-entry-more"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="search-results" id="search-results" hidden>
+                <div class="clear-button-container">
+                    <button class="clear-button" id="clear-button">Clear</button>
+                </div>
+                <table class="search-results-table" id="search-results-table">
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        <footer class="footer">
+            <p>Copyright 2026 Kagof under the <a href="LICENSE.txt">MIT license</a></p>
+            <p>
+                last modified <script>document.write( new Date(document.lastModified).toISOString().substring(0, 10) );</script>
+            </p>
+            <p>
+                <details>
+                <summary>Credits</summary>
+                    <a href="https://oldschool.runescape.com/">Old School Runescape</a> and RuneScape are registered trademarks of <a href="https://www.jagex.com/">Jagex Ltd</a>.<br/>
+                    Item icons & data scraped from: <a href="https://oldschool.runescape.wiki">OSRS Wiki</a><br/>
+                    CSS colors: <a href="https://github.com/catppuccin/palette/blob/main/docs/css.md">Catppuccin</a><br/>
+                    Fonts: Fira Sans &amp; Montserrat from <a href="https://fonts.google.com/">Google Fonts</a><br/>
+                    Searchbar icon from <a href="https://fontawesome.com/">Font Awesome</a>
+            </details>
+            </p>
+        </footer>
+    </body>
+</html>
