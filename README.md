@@ -18,7 +18,7 @@ Because just about everything is done locally and there are no dependencies to l
 
 The load from the webpage to the Wiki is limited to just the image icons.
 
-### website TODOs
+### Website TODOs
 
 * arrow keys / enter to navigate the dropdown
 * allow user to sort by different columns

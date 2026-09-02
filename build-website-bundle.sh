@@ -11,7 +11,7 @@ fi
 
 rm -rf "$BASE_DIR/dist"
 
-mkdir "$BASE_DIR/dist"
+mkdir -p "$BASE_DIR/dist"
 
 cp -r "$BASE_DIR/website/assets" "$BASE_DIR/dist/assets"
 cp "$BASE_DIR/website/index.html" "$BASE_DIR/dist/index.html"

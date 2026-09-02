@@ -1,0 +1,39 @@
+name: Push Website
+
+on: 
+  workflow_dispatch:
+  schedule:
+     - cron: "0 17 * * 3"
+
+permissions:
+  id-token: write
+
+jobs:
+  push-website:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      
+      - name: 'build dist'
+        run: |
+          chmod +x ./build-website-bundle.sh
+          ./build-website-bundle.sh
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          role-to-assume: ${{ secrets.ROLE_ARN }}
+          aws-region: eu-west-2
+          role-duration-seconds: 900
+          mask-aws-account-id: true
+
+      - name: Copy remote data to runner
+        run: |
+          mkdir -p ./dist/data
+          aws s3 cp s3://${{ secrets.S3_BUCKET_NAME }}/data/sources.json ./dist/data/
+          aws s3 cp s3://${{ secrets.S3_BUCKET_NAME }}/data/sources.json.hash ./dist/data/
+
+      - name: Sync to bucket
+        run: |
+          mkdir -p ./dist/data
+          aws s3 sync ./dist s3://${{ secrets.S3_BUCKET_NAME }}
