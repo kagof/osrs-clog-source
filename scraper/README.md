@@ -66,3 +66,4 @@ The output format follows [this JSON Schema](./schema.json).
 
 - Deal with items that have "Shop locations" instead of "Item sources", eg [Void Knight Top](https://oldschool.runescape.wiki/w/Void_knight_top). The initial intent for this tool is to be used for slayer monsters though, so not hugely urgent. For now these all appear in the "None" section.
 - Take advantage of Go Iterators, which should be able to reduce the memory usage of this (ie, not needing to hold the entire `items` list in memory at once
+- Source item list from the `category:Collection log items` instead of `Collection log/Table`, since the former gets updated automatically with the pages, and the latter requires someone to manually update a JSON entry.

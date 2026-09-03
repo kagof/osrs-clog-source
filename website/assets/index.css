@@ -57,6 +57,16 @@ button:active:enabled {
   transform: translateY(3px);
 }
 
+[tooltip]:hover::after {
+  position: fixed;
+  content: attr(tooltip);
+  border: 1px solid var(--ctp-mocha-crust);
+  background: var(--ctp-mocha-overlay0);
+  color: var(--ctp-mocha-text);
+  border-radius: 10px;
+  padding: .5em;
+}
+
 .header {
     text-align: center;
     font-family:'Montserrat';
@@ -80,7 +90,6 @@ button:active:enabled {
 }
 
 #last-updated {
-    text-align: left;
     font-style: italic;
 }
 

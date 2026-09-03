@@ -37,3 +37,7 @@ jobs:
         run: |
           mkdir -p ./dist/data
           aws s3 sync ./dist s3://${{ secrets.S3_BUCKET_NAME }}
+      
+      - name: invalidate Cloudfront cache
+        run: |
+          aws cloudfront create-invalidation --distribution-id "${{ secrets.CLOUDFRONT_DIST_ID }}" --paths "/*"

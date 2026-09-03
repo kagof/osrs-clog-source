@@ -18,11 +18,14 @@ Because just about everything is done locally and there are no dependencies to l
 
 The load from the webpage to the Wiki is limited to just the image icons.
 
-### Website TODOs
+## TODOs
 
-* arrow keys / enter to navigate the dropdown
-* allow user to sort by different columns
-* minify CSS/JS? Probably not worth the hassle currently given there is a tiny amount in total
+- Deal with items that have "Shop locations" instead of "Item sources"
+- Source item list from the `category:Collection log items` instead of `Collection log/Table`, since the former gets updated automatically with the pages, and the latter requires someone to manually update a JSON entry.
+- arrow keys / enter to navigate the dropdown
+- allow user to sort by different columns
+- minify CSS/JS? Probably not worth the hassle currently given there is a tiny amount in total
+- use Go iterators in the scraper for improved memory efficiency
 
 ## Workflow
 

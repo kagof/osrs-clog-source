@@ -15,10 +15,10 @@
         <h1 class="header">OSRS Collection Log Source</h1>
         <main class="page">
             <div>
-                <p>Search for an Old School RuneScape activity (boss, monster, minigame, etc) and this returns the collection log items associated with that activity.</p>
                 <p>Backed by data from the <a href="https://oldschool.runescape.wiki">OSRS Wiki</a> (though not associated with or endorsed by the OSRS Wiki, Jagex, or Old School RuneScape).</p>
+                <p>Although the Wiki is an <em>amazing</em> source of of information about OSRS, someone motivated by filling out niche entries in their Collection Log may struggle to find the info they need. For example, on receiving a slayer task for an unfamiliar monster, it is difficult to find out whether that monster has any Collection Log drops from the Wiki article. Searching this webpage for an Old School RuneScape activity (boss, monster, minigame, etc) returns the Collection Log items associated with that activity.</p>
             </div>
-            <div id="last-updated">Data last updated on unknown</div>
+            <div><span id="last-updated">Data last updated on unknown</span><sup>(<a tooltip="The data from the OSRS Wiki that backs this tool is scraped approximately once a week" href="#">?</a>)</sup></div>
             <div class="search-container">
                 <div class="searchbar-wrapper">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="searchbar-icon" height="24px">
@@ -65,6 +65,7 @@
         </main>
         <footer class="footer">
             <p>Copyright 2026 Kagof under the <a href="LICENSE.txt">MIT license</a></p>
+            <p>This webpage and the scraper that backs it are open sourced, you can <a href="https://github.com/kagof/osrs-clog-source">view the repository</a> or <a href="https://github.com/kagof/osrs-clog-source/issues">raise an issue</a>.</p>
             <p>
                 last modified <script>document.write( new Date(document.lastModified).toISOString().substring(0, 10) );</script>
             </p>
